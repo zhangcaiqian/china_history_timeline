@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国历史年表</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .timeline-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .filters {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .dropdown-menu {
+            background-color: #f0f0f0;
+            color: #000000;
+        }
+        .dropdown-item {
+            color: #000000;
+        }
+        .dropdown-item:hover {
+            background-color: #e0e0e0;
+        }
+        .timeline-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .search-box {
+            margin-bottom: 15px;
+        }
+        .slider-container {
+            margin-bottom: 15px;
+        }
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>中国历史年表</h1>
+            <p>从夏朝到现代的中国历史时间轴</p>
+        </div>
+        
+        <div class="filters">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="search-box">
+                        <label for="search-input">搜索朝代、事件或人物：</label>
+                        <input type="text" id="search-input" class="form-control" placeholder="输入关键词...">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="category-filter">
+                        <label for="category-dropdown">事件分类：</label>
+                        <select id="category-dropdown" class="form-select">
+                            <option value="all">全部</option>
+                            <option value="政治">政治</option>
+                            <option value="军事">军事</option>
+                            <option value="文化">文化</option>
+                            <option value="经济">经济</option>
+                            <option value="科技">科技</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="importance-filter">
+                        <label for="importance-slider">最低重要性：</label>
+                        <input type="range" id="importance-slider" class="form-range" min="1" max="5" step="1" value="1">
+                        <div class="d-flex justify-content-between">
+                            <span>1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slider-container">
+                <label for="time-range-slider">时间范围：</label>
+                <div id="time-range-slider"></div>
+                <div id="time-range-values" class="d-flex justify-content-between mt-2">
+                    <span id="min-year">公元前2100年</span>
+                    <span id="max-year">2025年</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline-container">
+            <h3 class="timeline-title">朝代时间轴</h3>
+            <div id="dynasty-timeline" class="timeline-plot"></div>
+        </div>
+        
+        <div class="timeline-container">
+            <h3 class="timeline-title">历史事件时间轴</h3>
+            <div id="event-timeline" class="timeline-plot"></div>
+        </div>
+        
+        <div class="timeline-container">
+            <h3 class="timeline-title">历史人物时间轴</h3>
+            <div id="figure-timeline" class="timeline-plot"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/nouislider@14.6.3/distribute/nouislider.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
